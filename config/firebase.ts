@@ -24,3 +24,5 @@ const storage = firebase.storage();
 export { auth, db, now, storage };
 console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(');
 console.log(db ? "DB works"  : 'DB not working');
+
+export {};

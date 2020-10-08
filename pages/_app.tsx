@@ -1,5 +1,5 @@
 import '../styles/tailwind.css';
-import type { AppProps, AppContext } from 'next/app';
+import type { AppProps } from 'next/app';
 import { AuthProvider } from '../hooks/useAuth';
 
 import NavBar from 'components/NavBar'
