@@ -7,9 +7,9 @@ interface LoginData {
   password: string;
 }
 
-const LoginForm: React.FC = ({props}) => {
+const LoginForm: React.FC = () => {
   const { register, errors, handleSubmit } = useForm();
-  
+
   const auth = useAuth();
   const router = useRouter();
 
