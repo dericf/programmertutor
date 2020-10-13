@@ -3,7 +3,7 @@ import { Divider } from './Divider';
 export const IntroCards: React.FC = () => {
   return (
     <div className="pt__intro my-12">
-      <div className="flex flex-col lg:flex-row flex-wrap justify-center row-gap-12">
+      <div className="flex flex-col lg:flex-row flex-wrap justify-center gap-12">
         <div className="pt__intro_card mx-8 lg:mx-4 bg-gradient-to-bl bg-blue-200 rounded-lg p-10 max-w-md self-center">
           <h3 className="text-lg text-center leading-6 font-medium text-gray-900">
             Free Zero Obligation Intro Session
@@ -27,7 +27,7 @@ export const IntroCards: React.FC = () => {
             confusing some of the initial concepts can be.
             <br /> <br />
             If you're more advanced, I can help with some of the trickier, more
-            complex concepts.
+            complex concepts too.
           </p>
         </div>
 
