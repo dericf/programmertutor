@@ -50,7 +50,7 @@ const useAuthProvider = () => {
     return auth
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         setUser(response.user);
         return response.user;
       })
