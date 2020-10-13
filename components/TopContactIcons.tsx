@@ -3,7 +3,7 @@ import React from 'react';
 export const TopContactIcons: React.FC = () => {
   return (
     <div
-      className="fixed flex flex-row gap-1 text-blue-700 cursor-pointer w-100 z-10"
+      className="fixed flex flex-row gap-4 text-blue-700 cursor-pointer w-100 z-10"
       style={{ top: 12, right: 12 }}
     >
       <a type="tel" href="tel:7802382982">

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <div className="p-12 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10">
+    <div className="py-12 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10">
       <div className="flex flex-col md:flex-row row-gap-2 justify-evenly">
         <span className=" self-center cursor-pointer">
           <a className="text-sm sm:text-md" type="tel" href="tel:7802382982">
