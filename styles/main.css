@@ -1,1 +1,5 @@
 @import './tailwind.css';
+
+.pt__intro_card {
+  background-color: #5fa8d39c;
+}

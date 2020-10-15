@@ -3,8 +3,8 @@ import React from 'react';
 export const Footer: React.FC = () => {
   return (
     <div className="py-12 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10">
-      <div className="flex flex-col md:flex-row row-gap-2 justify-evenly">
-        <span className=" self-center cursor-pointer">
+      <div className="flex flex-row justify-evenly flex-wrap">
+        <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap mr-4">
           <a className="text-sm sm:text-md" type="tel" href="tel:7802382982">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
           </a>
         </span>
 
-        <span className=" self-center cursor-pointer">
+        <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap ml-4">
           <a
             className="text-sm sm:text-md"
             type="email"
