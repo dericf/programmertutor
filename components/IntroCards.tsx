@@ -2,9 +2,9 @@ import { Divider } from './Divider';
 
 export const IntroCards: React.FC = () => {
   return (
-    <div className="pt__intro my-12">
-      <div className="flex flex-col lg:flex-row flex-wrap justify-center gap-12">
-        <div className="pt__intro_card mx-8 lg:mx-4 bg-gradient-to-bl bg-blue-200 rounded-lg p-10 max-w-md self-center">
+    <div className="pt__intro my-6">
+      <div className="flex flex-col lg:flex-row flex-wrap justify-center">
+        <div className="pt__intro_card bg-gradient-to-bl rounded-lg p-10 max-w-md self-center m-6">
           <h3 className="text-lg text-center leading-6 font-medium text-gray-900">
             Free Zero Obligation Intro Session
           </h3>
@@ -17,7 +17,7 @@ export const IntroCards: React.FC = () => {
           </p>
         </div>
 
-        <div className="pt__intro_card mx-8 md:mx-4 bg-gradient-to-bl bg-blue-200 rounded-lg p-10 max-w-md self-center">
+        <div className="pt__intro_card md:mx-4 bg-gradient-to-bl rounded-lg p-10 max-w-md self-center m-6">
           <h3 className="text-lg text-center leading-6 font-medium text-gray-900">
             All Skill Levels
           </h3>
@@ -31,17 +31,19 @@ export const IntroCards: React.FC = () => {
           </p>
         </div>
 
-        <div className="pt__intro_card mx-8 md:mx-4 mb-0 bg-gradient-to-bl bg-blue-200 rounded-lg p-10 max-w-md self-center ">
+        <div className="pt__intro_card md:mx-4 bg-gradient-to-bl rounded-lg p-10 max-w-md self-center m-6">
           <h3 className="text-lg text-center leading-6 font-medium text-gray-900">
             Fair and Straightforward Pricing
           </h3>
           <p className="mt-2 text-base leading-6 text-gray-700">
-            Remote sessions are only <strong>$25.00 CAD per hour</strong>.
+            Remote sessions: <strong>$25.00 CAD/hr</strong>.
             <br />
             <br />
-            In-person sessions are{' '}
-            <strong>$25.00 CAD per hour + $25.00 per session </strong> for
-            travel time + fuel.
+            In-person sessions:
+            <strong>
+              $25.00 CAD/hr + <br /> $25.00/session{' '}
+            </strong>{' '}
+            for travel time, fuel and parking.
           </p>
         </div>
       </div>

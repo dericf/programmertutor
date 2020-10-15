@@ -3,10 +3,10 @@ import React from 'react';
 export const TopContactIcons: React.FC = () => {
   return (
     <div
-      className="fixed flex flex-row gap-4 text-blue-700 cursor-pointer w-100 z-10"
+      className="fixed flex flex-row text-blue-700 cursor-pointer w-100 z-10"
       style={{ top: 12, right: 12 }}
     >
-      <a type="tel" href="tel:7802382982">
+      <a type="tel" href="tel:7802382982" className="mr-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
