@@ -27,8 +27,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-  ],
+    "**/*.tsx", "sanity/schemas/schema.js", "pages/index.js" ],
   "exclude": [
     "node_modules"
   ]
