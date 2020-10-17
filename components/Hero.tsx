@@ -6,7 +6,7 @@ type HeroTypes = {
 };
 export const Hero = React.forwardRef(({ content }: HeroTypes, ref) => {
   return (
-    <div className="pt__hero p-0 mx-12 my-12 flex flex-col justify-between">
+    <div className="pt__hero p-0 mx-12 mt-12 mb-3 md:my-12 flex flex-col justify-between">
       {/* <pre>{JSON.stringify(content, null, 4)}</pre> */}
       <h1 className="pt__title text-center text-4xl sm:text-5xl lg:text-6xl">
         {content.mainTitle}
