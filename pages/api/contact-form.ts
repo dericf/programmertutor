@@ -18,7 +18,8 @@ module.exports = (req: NowRequest, res: NowResponse) => {
       method: "POST",
      }
   ).then(resp => resp.json()
-  ).then(json => {    
+  ).then(json => {
+    console.log('GCaptcha Validation', json)
     if (json.success == true) {
       recaptchaValid = true;
       sendEmail(form);
