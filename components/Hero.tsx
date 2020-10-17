@@ -15,7 +15,7 @@ export const Hero = React.forwardRef(({ content }: HeroTypes, ref) => {
         {/* Fair Price. Flexible Schedule. Patient. */}
         {content.subtitle}
       </h2>
-      <div style={{ position: 'relative' }}>
+      <div className="relative">
         <img
           className="self-center"
           src={urlFor(content.mainBackgroundImage)

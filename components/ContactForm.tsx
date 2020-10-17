@@ -100,9 +100,11 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   };
   return (
     <>
-      <h2 className="text-3xl text-center my-6">Book a Free Consultation</h2>
+      <h2 className="text-2xl sm:text-3xl text-center my-6 px-3">
+        Book a Free Consultation
+      </h2>
 
-      <form className="w-full max-w-lg mx-auto " ref={ref}>
+      <form className="w-full max-w-lg mx-auto px-6" ref={ref}>
         <div className="flex flex-wrap -mx-3 mb-6 ">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -112,7 +114,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               Name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="name"
               type="text"
               name="name"
@@ -178,17 +180,17 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           </div>
         </div>
 
-        <div className="self-center md:self-start flex flex-row justify-around border-t border-b border-gray-600 border-solid border-opacity-50 py-4 ">
+        <div className="w-full flex flex-row justify-center border-t border-b border-gray-600 border-solid border-opacity-50 py-4 ">
           <input
             type="button"
             value="Submit"
             onClick={handleSubmit}
-            className="bg-blue-600 text-white px-6 py-2 rounded-md flex-grow-0 max-w-xs mr-6 self-center "
+            className="bg-blue-500 text-white px-6 py-2 rounded-md max-w-xs mx-6"
           />
           <input
             type="button"
             value="Cancel"
-            className="bg-red-600 text-white px-6 py-2 rounded-md flex-grow-0 max-w-xs self-center"
+            className="bg-red-500 text-white px-6 py-2 rounded-md  max-w-xs mx-6"
             onClick={() => {
               setForm(defaultForm);
             }}
