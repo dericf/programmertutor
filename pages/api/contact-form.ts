@@ -28,7 +28,7 @@ module.exports = (req: NowRequest, res: NowResponse) => {
     }
     return
   }).catch((e) => {
-    recaptchaValid = false;
+    console.log('Error with validation request', e)
     return
   })
   if (recaptchaValid == true) {
