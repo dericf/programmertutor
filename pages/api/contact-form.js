@@ -11,7 +11,22 @@ module.exports = async (req, res) => {
   };
 
   // console.log('RCPTCHA: ', payload.secret);
-  await sendEmail(form);
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const msg = {
+    to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
+    from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
+    subject: `Contact Form Submission - ${form.name}`,
+    html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
+  };
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email sent');
+    })
+    .catch((error) => {
+      console.error('SendGrid Error');
+    });
   // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
   //   {
   //     method: "POST",
@@ -35,23 +50,4 @@ module.exports = async (req, res) => {
   } else {
     res.send('Error');
   }
-};
-
-const sendEmail = async (form) => {
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  const msg = {
-    to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
-    from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
-    subject: `Contact Form Submission - ${form.name}`,
-    html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
-  };
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log('Email sent');
-    })
-    .catch((error) => {
-      console.error('SendGrid Error');
-    });
 };
