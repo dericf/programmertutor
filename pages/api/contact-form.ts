@@ -13,7 +13,7 @@ module.exports = (req: NowRequest, res: NowResponse) => {
     response: form.token
   }
 
-  
+  console.log('RCPTCHA: ', payload.secret);
   fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
     {
       method: "POST",
