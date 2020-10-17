@@ -1,20 +1,17 @@
-import { NowRequest, NowResponse } from '@vercel/node'
 import { SENDGRID_API_KEY } from '../../lib/sendgridSetup';
 import fetch from 'node-fetch';
-const sgMail = require('@sendgrid/mail');
 
-module.exports = (req: NowRequest, res: NowResponse) => {
-  
-  const form = req.body
-  let recaptchaValid: Boolean = true;
-  console.log('Form', form)
+module.exports = async (req, res) => {
+  const form = req.body;
+  let recaptchaValid = true;
+  console.log('Form', form);
   let payload = {
     secret: process.env.RECAPTCHA_SERVER_KEY,
-    response: form.token
-  }
+    response: form.token,
+  };
 
   // console.log('RCPTCHA: ', payload.secret);
-  sendEmail(form);
+  await sendEmail(form);
   // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
   //   {
   //     method: "POST",
@@ -40,9 +37,8 @@ module.exports = (req: NowRequest, res: NowResponse) => {
   }
 };
 
-
-const sendEmail = (form) => {
-  
+const sendEmail = async (form) => {
+  const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
@@ -56,6 +52,6 @@ const sendEmail = (form) => {
       console.log('Email sent');
     })
     .catch((error) => {
-      console.error("SendGrid Error");
+      console.error('SendGrid Error');
     });
-}
+};
