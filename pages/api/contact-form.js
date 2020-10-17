@@ -3,25 +3,41 @@ const sgMail = require('@sendgrid/mail');
 
 export default async (req, res) => {
   const form = req.body;
-  let recaptchaValid = true;
+  let recaptchaValid = false;
 
-  let payload = {
-    secret: process.env.RECAPTCHA_SERVER_KEY,
-    response: form.token,
-  };
+  try {
+    let validationFetch = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SERVER_KEY}&response=${form.token}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    const validationResponse = await validationFetch.json();
+    if (validationResponse.success == true) {
+      recaptchaValid = true;
 
+      console.log('Validation Success... Sending Email');
+      await sendEmail(form);
+    } else {
+      recaptchaValid = false;
+      console.log('Validation Fail... Not sending Email');
+    }
+  } catch (e) {
+    console.log('Validation Error', e);
+  }
+
+  if (recaptchaValid == true) {
+    res.send({ success: true });
+  } else {
+    res.send({ success: false });
+  }
+};
+
+const sendEmail = async (form) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  console.log('sgMail', sgMail);
-  console.log('RCPTCHA: ', payload.secret);
-  console.log('Sendgrid API: ', process.env.SENDGRID_API_KEY);
-  console.log(
-    'process.env.CONTACT_FORM_EMAIL_RECEIVER',
-    process.env.CONTACT_FORM_EMAIL_RECEIVER
-  );
-  console.log(
-    'process.env.CONTACT_FORM_EMAIL_SENDER',
-    process.env.CONTACT_FORM_EMAIL_SENDER
-  );
   const msg = {
     to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
     from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
@@ -32,34 +48,8 @@ export default async (req, res) => {
     console.log('Sending email...');
     await sgMail.send(msg);
     console.log('Email sent!');
-    res.send({ success: true });
   } catch (err) {
     console.log('Error sending email');
     console.error(err.toString());
-    resp.send({ success: false });
   }
-
-  // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
-  //   {
-  //     method: "POST",
-  //    }
-  // ).then(resp => resp.json()
-  // ).then(json => {
-  //   console.log('GCaptcha Validation', json)
-  //   if (json.success == true) {
-  //     recaptchaValid = true;
-  //     sendEmail(form);
-  //   } else {
-  //     recaptchaValid = false;
-  //   }
-  //   return
-  // }).catch((e) => {
-  //   console.log('Error with validation request', e)
-  //   return
-  // })
-  // if (recaptchaValid == true) {
-  //   res.send({ success: true });
-  // } else {
-  //   res.send({ success: false });
-  // }
 };
