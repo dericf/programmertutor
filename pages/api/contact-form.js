@@ -1,7 +1,7 @@
 // import { SENDGRID_API_KEY } from '../../lib/sendgridSetup';
 const sgMail = require('@sendgrid/mail');
 
-module.exports = (req, res) => {
+export default async (req, res) => {
   const form = req.body;
   let recaptchaValid = true;
 
@@ -28,14 +28,17 @@ module.exports = (req, res) => {
     subject: `Contact Form Submission - ${form.name}`,
     html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
   };
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log('Email sent');
-    })
-    .catch((error) => {
-      console.error('SendGrid Error');
-    });
+  (async () => {
+    try {
+      console.log('Sending email...');
+      await sgMail.send(msg);
+      console.log('Email sent!');
+    } catch (err) {
+      console.log('Error sending email');
+      console.error(err.toString());
+    }
+  })();
+
   // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
   //   {
   //     method: "POST",
