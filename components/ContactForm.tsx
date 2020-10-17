@@ -36,7 +36,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   const [form, setForm] = useState(defaultForm);
 
   const handleLoaded = (_) => {
-    window.grecaptcha.ready((_) => {
+    (window as any).grecaptcha.ready((_) => {
       console.log('recaptcha loaded!');
     });
   };
@@ -49,8 +49,8 @@ const ContactForm = React.forwardRef((_, ref: any) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    window.grecaptcha.ready((_) => {
-      window.grecaptcha
+    (window as any).grecaptcha.ready((_) => {
+      (window as any).grecaptcha
         .execute('6LfNWNgZAAAAANv_nXCXGVtU0zfNHLEy---tKcb9', {
           action: 'contactForm',
         })
