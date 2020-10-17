@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
     <div className="py-12 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10">
       <div className="flex flex-row justify-evenly flex-wrap">
         <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap mr-4">
-          <a className="text-sm sm:text-md" type="tel" href="tel:7802382982">
+          <a className="text-sm sm:text-lg" type="tel" href="tel:7802382982">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
 
         <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap ml-4">
           <a
-            className="text-sm sm:text-md"
+            className="text-sm sm:text-lg"
             type="email"
             href="mailto:contact@programmingtutor.com"
           >
