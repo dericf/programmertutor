@@ -1,7 +1,7 @@
-import { SENDGRID_API_KEY } from '../../lib/sendgridSetup';
-import fetch from 'node-fetch';
+// import { SENDGRID_API_KEY } from '../../lib/sendgridSetup';
+const sgMail = require('@sendgrid/mail');
 
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
   const form = req.body;
   let recaptchaValid = true;
 
@@ -10,9 +10,18 @@ module.exports = async (req, res) => {
     response: form.token,
   };
 
-  // console.log('RCPTCHA: ', payload.secret);
-  const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  console.log('sgMail', sgMail);
+  console.log('RCPTCHA: ', payload.secret);
+  console.log('Sendgrid API: ', process.env.SENDGRID_API_KEY);
+  console.log(
+    'process.env.CONTACT_FORM_EMAIL_RECEIVER',
+    process.env.CONTACT_FORM_EMAIL_RECEIVER
+  );
+  console.log(
+    'process.env.CONTACT_FORM_EMAIL_SENDER',
+    process.env.CONTACT_FORM_EMAIL_SENDER
+  );
   const msg = {
     to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
     from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
