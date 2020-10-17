@@ -6,32 +6,33 @@ const sgMail = require('@sendgrid/mail');
 module.exports = (req: NowRequest, res: NowResponse) => {
   
   const form = req.body
-  let recaptchaValid: Boolean = false;
-  console.log('form', form)
+  let recaptchaValid: Boolean = true;
+  console.log('Form', form)
   let payload = {
     secret: process.env.RECAPTCHA_SERVER_KEY,
     response: form.token
   }
 
-  console.log('RCPTCHA: ', payload.secret);
-  fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
-    {
-      method: "POST",
-     }
-  ).then(resp => resp.json()
-  ).then(json => {
-    console.log('GCaptcha Validation', json)
-    if (json.success == true) {
-      recaptchaValid = true;
-      sendEmail(form);
-    } else {
-      recaptchaValid = false;
-    }
-    return
-  }).catch((e) => {
-    console.log('Error with validation request', e)
-    return
-  })
+  // console.log('RCPTCHA: ', payload.secret);
+  sendEmail(form);
+  // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
+  //   {
+  //     method: "POST",
+  //    }
+  // ).then(resp => resp.json()
+  // ).then(json => {
+  //   console.log('GCaptcha Validation', json)
+  //   if (json.success == true) {
+  //     recaptchaValid = true;
+  //     sendEmail(form);
+  //   } else {
+  //     recaptchaValid = false;
+  //   }
+  //   return
+  // }).catch((e) => {
+  //   console.log('Error with validation request', e)
+  //   return
+  // })
   if (recaptchaValid == true) {
     res.send('Success');
   } else {
