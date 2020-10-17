@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 module.exports = async (req, res) => {
   const form = req.body;
   let recaptchaValid = true;
-  console.log('Form', form);
+
   let payload = {
     secret: process.env.RECAPTCHA_SERVER_KEY,
     response: form.token,
