@@ -37,3 +37,8 @@ yarn-error.log*
 .env
 .env.local
 /.next
+
+# Sanity
+sanity/node_modules
+
+sendgrid.env
