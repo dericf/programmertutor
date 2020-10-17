@@ -47,14 +47,14 @@ const ContactForm = React.forwardRef((_, ref: any) => {
     document.body.appendChild(script);
   }, []);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    (window as any).grecaptcha.ready((_) => {
+    (window as any).grecaptcha.ready(async (_) => {
       (window as any).grecaptcha
         .execute('6LfNWNgZAAAAANv_nXCXGVtU0zfNHLEy---tKcb9', {
           action: 'contactForm',
         })
-        .then((token) => {
+        .then(async (token) => {
           let data = {
             name: form.name,
             email: form.email,
@@ -63,32 +63,31 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             token: token,
           };
           console.log('CAPTCHA??!! HELLO?');
-          fetch('/api/contact-form', {
+          let resp = await fetch('/api/contact-form', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-          })
-            .then((resp) => resp.json)
-            .then((json) => {
-              console.log('RESPONSE: ', json);
-              setForm({
-                ...form,
-                isError: false,
-                isSuccess: true,
-                helperText: `Success! I received your information. I'll be in touch with you shortly. Thanks!`,
-              });
-            })
-            .catch((error) => {
-              console.log('ERROR: ' + error);
-              setForm({
-                ...form,
-                isError: true,
-                helperText:
-                  'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
-              });
+          });
+          const respData: any = await resp.json();
+
+          if (respData.success) {
+            setForm({
+              ...form,
+              isError: false,
+              isSuccess: true,
+              helperText: `Success! I received your information. I'll be in touch with you shortly. Thanks!`,
             });
+          } else {
+            console.log('ERROR: ');
+            setForm({
+              ...form,
+              isError: true,
+              helperText:
+                'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
+            });
+          }
         });
     });
   };

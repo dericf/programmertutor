@@ -28,16 +28,16 @@ export default async (req, res) => {
     subject: `Contact Form Submission - ${form.name}`,
     html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
   };
-  (async () => {
-    try {
-      console.log('Sending email...');
-      await sgMail.send(msg);
-      console.log('Email sent!');
-    } catch (err) {
-      console.log('Error sending email');
-      console.error(err.toString());
-    }
-  })();
+  try {
+    console.log('Sending email...');
+    await sgMail.send(msg);
+    console.log('Email sent!');
+    res.send({ success: true });
+  } catch (err) {
+    console.log('Error sending email');
+    console.error(err.toString());
+    resp.send({ success: false });
+  }
 
   // fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${payload.secret}&response=${payload.response}`,
   //   {
@@ -57,9 +57,9 @@ export default async (req, res) => {
   //   console.log('Error with validation request', e)
   //   return
   // })
-  if (recaptchaValid == true) {
-    res.send('Success');
-  } else {
-    res.send('Error');
-  }
+  // if (recaptchaValid == true) {
+  //   res.send({ success: true });
+  // } else {
+  //   res.send({ success: false });
+  // }
 };
