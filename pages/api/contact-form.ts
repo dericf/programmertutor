@@ -1,5 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { SENDGRID_API_KEY } from '../../lib/sendgridSetup';
+import fetch from 'node-fetch';
 const sgMail = require('@sendgrid/mail');
 
 module.exports = (req: NowRequest, res: NowResponse) => {
