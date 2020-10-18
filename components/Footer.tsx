@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import React from 'react';
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
   return (
-    <div className="py-12 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10">
-      <div className="flex flex-row justify-evenly flex-wrap">
-        <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap mr-4">
+    <div className="py-12 pb-6 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10 relative">
+      <div className="flex flex-row justify-around flex-wrap items-center">
+        <span className=" self-center cursor-pointer whitespace-no-wrap mr-4 mb-8">
           <a className="text-sm sm:text-lg" type="tel" href="tel:7802382982">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +20,7 @@ export const Footer: React.FC = () => {
           </a>
         </span>
 
-        <span className=" self-center cursor-pointer mb-2 whitespace-no-wrap ml-4">
+        <span className=" self-center cursor-pointer mb-8 whitespace-no-wrap ml-4">
           <a
             className="text-sm sm:text-lg"
             type="email"
@@ -41,6 +42,42 @@ export const Footer: React.FC = () => {
             &nbsp; contact@programmingtutor.com
           </a>
         </span>
+
+        <span className="self-center cursor-pointer mb-8 whitespace-no-wrap ml-4">
+          <a
+            href="http://maps.google.com/?q=Edmonton%20Alberta%20Canada"
+            target="_blank"
+            className="text-sm sm:text-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              width="20"
+              className="inline"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Edmonton, Alberta Canada
+          </a>
+        </span>
+      </div>
+      <div className="flex flex-row justify-around mt-6">
+        <Link href="/privacy-policy" as="/privacy-policy" className="text-sm">
+          Privacy Policy
+        </Link>
+
+        <Link
+          href="/terms-and-conditions"
+          as="/terms-and-conditions"
+          className="text-sm"
+        >
+          Terms & Conditions
+        </Link>
       </div>
     </div>
   );
