@@ -7,6 +7,7 @@ const CallToActionButton = React.forwardRef((_, ref: any) => {
       ref.current.scrollIntoView({
         behavior: 'smooth',
       });
+      ref.current.focus();
     }
   };
 
