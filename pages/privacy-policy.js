@@ -50,7 +50,10 @@ export default function PrivacyPolicy({ content }) {
         <p>
           By using our website, you hereby consent to our Privacy Policy and
           agree to its terms. For our Terms and Conditions, please visit the{' '}
-          <a href="/terms-of-service">Terms & Service</a>.
+          <Link href="/terms-and-conditions" as="/terms-and-conditions">
+            <a>Terms and Conditions</a>
+          </Link>
+          .
         </p>
 
         <h2>Information we collect</h2>
