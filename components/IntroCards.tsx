@@ -13,7 +13,7 @@ export const IntroCards = ({ content }: PropTypes) => {
           content.cards.map((card) => {
             return (
               <div
-                className="pt__intro_card rounded-lg p-10 m-6 max-w-md self-center lg:self-start prose prose-md"
+                className="pt__intro_card rounded-lg p-5 m-6 max-w-md self-center lg:self-start prose prose-lg"
                 style={{ height: 'auto' }}
                 key={card._id}
               >

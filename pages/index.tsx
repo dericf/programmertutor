@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { IntroCards } from '@/components/IntroCards';
 import { ServicesDescription } from '@/components/ServicesDescription';
-import { TopContactIcons } from '@/components/TopContactIcons';
+
 import React, { useEffect } from 'react';
 import sanity from '../lib/sanityClient';
 import Head from 'next/head';
@@ -17,24 +17,19 @@ export default function Home({ content, services }) {
     <>
       <Head>
         <title>Programmer Tutor | Fair. Flexible. Patient.</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="pt__main_container md:container bg-white mx-auto p-0 m-0">
-        <TopContactIcons />
 
-        <Hero content={content} ref={contactFormRef} />
+      <Hero content={content} ref={contactFormRef} />
 
-        {/* <Divider /> */}
+      {/* <Divider /> */}
 
-        <IntroCards content={content} />
+      <IntroCards content={content} />
 
-        <Divider />
+      <Divider />
 
-        <ServicesDescription content={content} />
-        <Divider />
-        <ContactForm ref={contactFormRef} />
-        <Footer />
-      </div>
+      <ServicesDescription content={content} />
+      <Divider />
+      <ContactForm ref={contactFormRef} />
     </>
   );
 }
