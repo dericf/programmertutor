@@ -3,8 +3,13 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <div className="py-12 pb-6 px-6 mt-12  text-blue-700  w-100 bg-gray-200 rounded-lg z-10 relative">
-      <div className="flex flex-row justify-around flex-wrap items-center">
+    <div className="pb-6 pt-0 mt-6  text-blue-700  w-100 bg-white rounded-lg z-10 relative">
+      <div className="bg-white border-t shadow-md border-gray-300 py-6 mb-6 w-full">
+        <h2 className="text-center justify-center text-gray-800 whitespace-no-wrap text-2xl md:text-3xl">
+          Contact Information
+        </h2>
+      </div>
+      <div className="flex flex-row justify-around flex-wrap items-center px-6">
         <span className=" self-center cursor-pointer whitespace-no-wrap mr-4 mb-8">
           <a className="text-sm sm:text-lg" type="tel" href="tel:7802382982">
             <svg
@@ -67,16 +72,12 @@ export const Footer = () => {
         </span>
       </div>
       <div className="flex flex-row justify-around mt-6">
-        <Link href="/privacy-policy" as="/privacy-policy" className="text-sm">
-          <a>Privacy Policy</a>
+        <Link href="/privacy-policy" as="/privacy-policy">
+          <a className="text-sm">Privacy Policy</a>
         </Link>
 
-        <Link
-          href="/terms-and-conditions"
-          as="/terms-and-conditions"
-          className="text-sm"
-        >
-          <a>Terms and Conditions</a>
+        <Link href="/terms-and-conditions" as="/terms-and-conditions">
+          <a className="text-sm">Terms and Conditions</a>
         </Link>
       </div>
     </div>
