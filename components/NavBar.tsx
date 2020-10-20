@@ -5,32 +5,35 @@ import React from 'react';
 export const NavBar = () => {
   const router = useRouter();
   return (
-    <>
-      <p>
-        {router.asPath !== '/' && (
-          <div
-            className="fixed flex flex-row text-blue-700 cursor-pointer w-100 z-10"
-            style={{ top: 12, left: 12 }}
-          >
-            <Link href="/" as="/" title="Home">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                width="30"
-              >
-                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-              </svg>
-            </Link>
-          </div>
-        )}
-      </p>
+    <div className="pt__navbar shadow-lg">
+      {router.asPath !== '/' && (
+        <div
+          className="fixed flex flex-row text-blue-700 cursor-pointer w-100 z-10"
+          style={{ top: 12, left: 12 }}
+        >
+          <Link href="/" as="/" title="Home">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              width="30"
+            >
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+          </Link>
+        </div>
+      )}
 
       <div
         className="fixed flex flex-row text-blue-700 cursor-pointer w-100 z-10"
         style={{ top: 12, right: 12 }}
       >
-        <a type="tel" href="tel:7802382982" className="mr-4">
+        <a
+          type="tel"
+          href="tel:7802382982"
+          className="mr-4"
+          title="Phone: 7802382982"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -41,7 +44,11 @@ export const NavBar = () => {
           </svg>
         </a>
 
-        <a type="email" href="mailto:contact@programmingtutor.com">
+        <a
+          type="email"
+          href="mailto:contact@programmingtutor.com"
+          title="Email: contact@programmingtutor.com"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -56,6 +63,6 @@ export const NavBar = () => {
           </svg>
         </a>
       </div>
-    </>
+    </div>
   );
 };
