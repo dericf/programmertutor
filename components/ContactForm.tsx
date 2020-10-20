@@ -1,5 +1,7 @@
 import { processEnv } from 'next/dist/lib/load-env-config';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import Spinner from './Spinner';
 
 type ContactForm = {
   name: string;
@@ -11,6 +13,7 @@ type ContactForm = {
   isError: boolean;
   isSuccess: boolean;
   isSubmitting: boolean;
+  agreedToTerms: boolean;
 };
 
 type ContactFormErrors = {
@@ -24,11 +27,14 @@ const FormErrors: ContactFormErrors = {
 };
 
 const ContactForm = React.forwardRef((_, ref: any) => {
+  var classNames = require('classnames');
+
   const defaultForm: ContactForm = {
     name: '',
     email: '',
     course: '',
     message: '',
+    agreedToTerms: false,
     isButtonDisabled: false,
     helperText: '',
     isError: false,
@@ -51,8 +57,8 @@ const ContactForm = React.forwardRef((_, ref: any) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (form.isSubmitting == false) {
-      form.isSubmitting = true;
+    if (form.name.length == 0 && form.agreedToTerms == true) {
+      setForm({ ...form, isSubmitting: true });
       (window as any).grecaptcha.ready(async (_) => {
         (window as any).grecaptcha
           .execute('6LfNWNgZAAAAANv_nXCXGVtU0zfNHLEy---tKcb9', {
@@ -64,35 +70,50 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               email: form.email,
               course: form.course,
               message: form.message,
+              agreedToTerms: form.agreedToTerms,
               token: token,
             };
-            console.log('CAPTCHA??!! HELLO?');
-            let resp = await fetch('/api/contact-form', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(data),
-            });
-            const respData: any = await resp.json();
 
-            if (respData.success) {
-              setForm({
-                ...defaultForm,
-                isError: false,
-                isSuccess: true,
-                helperText: `Success! I received your information. I'll be in touch with you shortly. Thanks!`,
-              });
+            if (process.env.NODE_ENV == 'development') {
+              setTimeout(() => {
+                setForm({
+                  ...defaultForm,
+                  isSubmitting: false,
+                  isError: false,
+                  isSuccess: true,
+                  helperText: `Success! Development Version Enabled.`,
+                });
+              }, 2);
             } else {
-              console.log('ERROR: ');
-              setForm({
-                ...form,
-                isError: true,
-                helperText:
-                  'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
+              let resp = await fetch('/api/contact-form', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
               });
+              const respData: any = await resp.json();
+
+              if (respData.success) {
+                setForm({
+                  ...defaultForm,
+                  isError: false,
+                  isSuccess: true,
+                  isSubmitting: false,
+                  helperText: `Success! I received your information. I'll be in touch with you shortly. Thanks!`,
+                });
+              } else {
+                console.log('ERROR: ');
+                setForm({
+                  ...form,
+                  isError: true,
+                  isSuccess: false,
+                  isSubmitting: false,
+                  helperText:
+                    'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
+                });
+              }
             }
-            form.isSubmitting = false;
           });
       });
     }
@@ -105,7 +126,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   };
   return (
     <>
-      <h2 className="text-2xl sm:text-3xl text-center my-6 px-3">
+      <h2 className="text-2xl md:text-3xl text-center my-6 px-3">
         Request a Free Consultation
       </h2>
 
@@ -189,34 +210,67 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             />
           </div>
         </div>
+        <div className="flex flex-wrap mb-2">
+          <label>
+            <input
+              type="checkbox"
+              checked={form.agreedToTerms}
+              onChange={(e) => {
+                setForm({ ...form, agreedToTerms: e.target.checked });
+              }}
+            />{' '}
+            I have read and agree to the{' '}
+            <Link href="/privacy-policy" as="/privacy-policy">
+              <a className="underline cursor-pointer hover:text-blue-600">
+                Privacy Policy
+              </a>
+            </Link>
+            &nbsp;and the &nbsp;
+            <Link href="/terms-and-conditions" as="/terms-and-conditions">
+              <a className="underline cursor-pointer hover:text-blue-600">
+                Terms and Conditions
+              </a>
+            </Link>
+          </label>
+        </div>
 
-        <div className="w-full flex flex-row justify-center border-t border-b border-gray-600 border-solid border-opacity-50 py-4 ">
-          <input
-            type="button"
-            value="Submit"
-            onClick={(e) => {
-              form.name.length != 0 && form.isSubmitting == false
-                ? handleSubmit(e)
-                : e.preventDefault();
-            }}
-            disabled={form.name.length == 0 || form.isSubmitting == true}
-            className={`font-bold text-white px-6 py-2 rounded-md max-w-xs mx-6 bg-blue-500  hover:bg-blue-dark focus:bg-blue-700 focus:border-white ${
-              form.name.length != 0 && form.isSubmitting == false
-                ? 'cursor-pointer'
-                : 'cursor-not-allowed'
-            }`}
-          />
+        <div className="w-full flex flex-row justify-center border-gray-600 border-solid border-opacity-50 py-4 ">
+          {form.isSubmitting == false && (
+            <input
+              type="button"
+              value="Submit"
+              onClick={handleSubmit}
+              disabled={form.name.length == 0 && form.agreedToTerms == true}
+              className={`font-bold text-white px-6 py-2 rounded-sm w-full mr-6 ${
+                form.name.length != 0 && form.agreedToTerms
+                  ? 'cursor-pointer bg-blue-500 hover:bg-blue-dark focus:bg-blue-700 focus:border-white'
+                  : 'cursor-not-allowed bg-blue-200'
+              }`}
+            />
+          )}
 
-          <input
-            value="Cancel"
-            type="button"
-            onClick={() => {
-              setForm(defaultForm);
-            }}
-            className={
-              'font-bold text-white px-6 py-2 rounded-md max-w-xs mx-6 bg-red-500 hover:bg-red-600 cursor-pointer'
-            }
-          />
+          {form.isSubmitting && (
+            <button
+              type="button"
+              className="font-bold text-white px-6 py-2 rounded-sm w-full  mr-6 bg-blue-300 cursor-wait"
+              disabled
+            >
+              <Spinner />
+            </button>
+          )}
+
+          {form.isSubmitting == false && (
+            <input
+              value="Cancel"
+              type="button"
+              onClick={() => {
+                setForm(defaultForm);
+              }}
+              className={
+                'font-bold px-6 py-2 rounded-sm w-full ml-6 bg-white text-gray-800 border border-gray-500 focus:border-gray-500 hover:bg-gray-200 hover:shadow-sm cursor-pointer'
+              }
+            />
+          )}
 
           <div
             className="g-recaptcha"
