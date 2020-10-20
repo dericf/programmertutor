@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps): any {
       </Head>
       <AuthProvider>
         <NavBar />
-        <div className="pt__main_container md:container bg-white mx-auto p-0 m-0">
+        <div className="pt__main_container  bg-white mx-auto p-0 m-0">
           <Component {...pageProps} />
         </div>
         <Footer />
