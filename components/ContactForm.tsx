@@ -81,7 +81,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
                   isSubmitting: false,
                   isError: false,
                   isSuccess: true,
-                  helperText: `Success! Development Version Enabled.`,
+                  helperText: `Development Version Enabled.`,
                 });
               }, 2);
             } else {
@@ -100,7 +100,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
                   isError: false,
                   isSuccess: true,
                   isSubmitting: false,
-                  helperText: `Success! I received your information. I'll be in touch with you shortly. Thanks!`,
+                  helperText: `I received your information and I'll be in touch with you shortly via email. Thanks!`,
                 });
               } else {
                 console.log('ERROR: ');
@@ -225,7 +225,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
                 Privacy Policy
               </a>
             </Link>
-            &nbsp;and the &nbsp;
+            &nbsp;and the&nbsp;
             <Link href="/terms-and-conditions" as="/terms-and-conditions">
               <a className="underline cursor-pointer hover:text-blue-600">
                 Terms and Conditions
@@ -278,16 +278,24 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             data-size="invisible"
           ></div>
         </div>
-        {form.isError && (
-          <p className="text-red-600 text-md italic py-4 mx-auto text-center">
-            {form.helperText}
-          </p>
+        {form.isSuccess && (
+          <div
+            className="bg-white border-l-4 border-green-500 text-green-700 p-4"
+            role="alert"
+          >
+            <p className="font-bold">Information Submitted Successfully</p>
+            <p>{form.helperText}</p>
+          </div>
         )}
 
-        {form.isSuccess && (
-          <p className="text-gray-900 text-md italic py-4 mx-auto text-center">
-            {form.helperText}
-          </p>
+        {form.isError && (
+          <div
+            className="bg-white border-l-4 border-red-500 text-red-700 p-4"
+            role="alert"
+          >
+            <p className="font-bold">Something Went Wrong</p>
+            <p>{form.helperText}</p>
+          </div>
         )}
       </form>
     </>
