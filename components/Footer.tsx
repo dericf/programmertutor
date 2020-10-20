@@ -68,7 +68,7 @@ export const Footer = () => {
       </div>
       <div className="flex flex-row justify-around mt-6">
         <Link href="/privacy-policy" as="/privacy-policy" className="text-sm">
-          Privacy Policy
+          <a>Privacy Policy</a>
         </Link>
 
         <Link
@@ -76,7 +76,7 @@ export const Footer = () => {
           as="/terms-and-conditions"
           className="text-sm"
         >
-          Terms & Conditions
+          <a>Terms and Conditions</a>
         </Link>
       </div>
     </div>
