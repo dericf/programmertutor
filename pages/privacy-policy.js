@@ -15,17 +15,16 @@ export default function PrivacyPolicy({ content }) {
       <Head>
         <title>Privacy Policy | Programmer Tutor</title>
       </Head>
-      <h1 className="pt__title text-center text-4xl sm:text-5xl lg:text-6xl">
+      <h1 className="pt__title text-center text-4xl sm:text-5xl lg:text-6xl mt-12">
         Privacy Policy
       </h1>
-      {/* <h2 className="pt__subtitle text-center text-lg md:text-2xl mb-8">
-        
+      <h2 className="pt__subtitle text-center text-lg md:text-2xl mb-8">
         Last Updated: October 17, 2020
-      </h2> */}
+      </h2>
       <Divider />
 
-      <article className="prose mx-auto px-6">
-        <h2 className="text-center">Last Updated: October 17, 2020</h2>
+      <article className="prose mx-auto px-6 mt-6">
+        <h2>Overview</h2>
         <p>
           At programmertutor.com, accessible from https://programmertutor.com,
           one of our main priorities is the privacy of our visitors. This
@@ -90,6 +89,24 @@ export default function PrivacyPolicy({ content }) {
           </li>
           <li>Send you emails</li>
           <li>Find and prevent fraud</li>
+        </ul>
+
+        <h2>Contact Form </h2>
+        <p>
+          Our contact form is protected by Google reCAPTCHA and their{' '}
+          <a href="https://www.google.com/intl/en/policies/privacy/">
+            Privacy Policy
+          </a>{' '}
+          applies. Information we collect via this contact form is as follows:
+        </p>
+        <ul>
+          <li>Your name</li>
+          <li>Your email address</li>
+          <li>The course or topic that you are looking to be tutored in</li>
+          <li>
+            Optional Message that could include a variety of additional
+            information related to your request to book a tutoring consultation.
+          </li>
         </ul>
 
         <h2>Log Files</h2>

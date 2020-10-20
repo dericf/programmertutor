@@ -13,19 +13,19 @@ export default function PrivacyPolicy({ content }) {
   return (
     <>
       <Head>
-        <title>Terms & Conditions | Programmer Tutor</title>
+        <title>Terms and Conditions | Programmer Tutor</title>
       </Head>
-      <h1 className="pt__title text-center text-4xl sm:text-5xl lg:text-6xl">
-        Terms & Conditions
+      <h1 className="pt__title text-center text-4xl sm:text-5xl lg:text-6xl mt-12">
+        Terms and Conditions
       </h1>
+      <h2 className="pt__subtitle text-center text-lg md:text-2xl mb-8">
+        Last Updated: October 17, 2020
+      </h2>
 
       <Divider />
 
-      <article className="prose mx-auto">
-        <h2 className="text-center">Last Updated: October 17, 2020</h2>
-        <h2>
-          <strong>Terms and Conditions</strong>
-        </h2>
+      <article className="prose mx-auto px-6 mt-6">
+        <h2>Overview</h2>
 
         <p>Welcome to Programmer Tutor!</p>
 
@@ -58,9 +58,16 @@ export default function PrivacyPolicy({ content }) {
           therefore as referring to same.
         </p>
 
-        <h3>
-          <strong>Cookies</strong>
-        </h3>
+        <h2>Contact Form</h2>
+        <p>
+          Our contact form is protected by Google reCAPTCHA and their{' '}
+          <a href="https://www.google.com/intl/en/policies/terms/">
+            Terms of Service
+          </a>{' '}
+          apply.
+        </p>
+
+        <h2>Cookies</h2>
 
         <p>
           We employ the use of cookies. By accessing Programmer Tutor, you
@@ -76,9 +83,7 @@ export default function PrivacyPolicy({ content }) {
           cookies.
         </p>
 
-        <h3>
-          <strong>License</strong>
-        </h3>
+        <h2>License</h2>
 
         <p>
           Unless otherwise stated, Programmer Tutor and/or its licensors own the
@@ -147,9 +152,7 @@ export default function PrivacyPolicy({ content }) {
           your Comments in any and all forms, formats or media.
         </p>
 
-        <h3>
-          <strong>Hyperlinking to our Content</strong>
-        </h3>
+        <h2>Hyperlinking to our Content</h2>
 
         <p>
           The following organizations may link to our Website without prior
@@ -238,9 +241,7 @@ export default function PrivacyPolicy({ content }) {
           linking absent a trademark license agreement.
         </p>
 
-        <h3>
-          <strong>iFrames</strong>
-        </h3>
+        <h2>iFrames</h2>
 
         <p>
           Without prior approval and written permission, you may not create
@@ -248,9 +249,7 @@ export default function PrivacyPolicy({ content }) {
           presentation or appearance of our Website.
         </p>
 
-        <h3>
-          <strong>Content Liability</strong>
-        </h3>
+        <h2>Content Liability</h2>
 
         <p>
           We shall not be hold responsible for any content that appears on your
@@ -261,9 +260,7 @@ export default function PrivacyPolicy({ content }) {
           violation of, any third party rights.
         </p>
 
-        <h3>
-          <strong>Reservation of Rights</strong>
-        </h3>
+        <h2>Reservation of Rights</h2>
 
         <p>
           We reserve the right to request that you remove all links or any
@@ -274,9 +271,7 @@ export default function PrivacyPolicy({ content }) {
           follow these linking terms and conditions.
         </p>
 
-        <h3>
-          <strong>Removal of links from our website</strong>
-        </h3>
+        <h2>Removal of links from our website</h2>
 
         <p>
           If you find any link on our Website that is offensive for any reason,
@@ -292,9 +287,7 @@ export default function PrivacyPolicy({ content }) {
           website is kept up to date.
         </p>
 
-        <h3>
-          <strong>Disclaimer</strong>
-        </h3>
+        <h2>Disclaimer</h2>
 
         <p>
           To the maximum extent permitted by applicable law, we exclude all
