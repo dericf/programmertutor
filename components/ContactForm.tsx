@@ -57,7 +57,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (form.name.length == 0 && form.agreedToTerms == true) {
+    if (form.name.length != 0 && form.agreedToTerms == true) {
       setForm({ ...form, isSubmitting: true });
       (window as any).grecaptcha.ready(async (_) => {
         (window as any).grecaptcha
@@ -240,7 +240,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               type="button"
               value="Submit"
               onClick={handleSubmit}
-              disabled={form.name.length == 0 && form.agreedToTerms == true}
+              disabled={form.name.length == 0 && form.agreedToTerms == false}
               className={`font-bold text-white px-6 py-2 rounded-sm w-full mr-6 ${
                 form.name.length != 0 && form.agreedToTerms
                   ? 'cursor-pointer bg-blue-500 hover:bg-blue-dark focus:bg-blue-700 focus:border-white'
