@@ -1,3 +1,4 @@
+import { route } from 'next/dist/next-server/server/router';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -6,7 +7,7 @@ export const NavBar = () => {
   const router = useRouter();
   return (
     <div className="pt__navbar shadow-lg">
-      {router.asPath !== '/' && (
+      {router.pathname !== '/' && (
         <div
           className="fixed flex flex-row text-blue-700 cursor-pointer w-100 z-10"
           style={{ top: 12, left: 12 }}
