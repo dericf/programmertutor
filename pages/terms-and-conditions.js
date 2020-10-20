@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 // Next
 import Head from 'next/head';
 import Link from 'next/link';
-// Sanity
-import sanity from '../lib/sanityClient';
-import { contentQuery } from '../data/queries';
 // Components
 import { Divider } from '@/components/Divider';
 
@@ -330,10 +327,3 @@ export default function PrivacyPolicy({ content }) {
     </>
   );
 }
-
-export const getStaticProps = async () => {
-  const content = await sanity.fetch(contentQuery);
-  return {
-    props: { content }, // will be passed to the page component as props
-  };
-};
