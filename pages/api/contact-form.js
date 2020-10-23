@@ -40,7 +40,7 @@ const sendEmail = async (form) => {
     to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
     from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
     subject: `Contact Form Submission - ${form.name}`,
-    html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
+    html: `Name: ${form.name}<br/>Email: <a href="mailto:${form.email}">${form.email}</a><br/>Course: ${form.course}<br/>Message: ${form.message}`,
   };
   try {
     console.log('Sending email...');
