@@ -11,6 +11,11 @@ function MyApp({ Component, pageProps }: AppProps): any {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <script
+          src="https://www.google.com/recaptcha/api.js"
+          async
+          defer
+        ></script>
       </Head>
       <AuthProvider>
         <NavBar />
