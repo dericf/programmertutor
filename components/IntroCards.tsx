@@ -8,12 +8,12 @@ type PropTypes = {
 export const IntroCards = ({ content }: PropTypes) => {
   return (
     <div className="pt__intro my-6">
-      <div className="flex flex-col lg:flex-row flex-wrap justify-around">
+      <div className="flex flex-col lg:flex-row flex-wrap justify-around ">
         {content.cards &&
           content.cards.map((card) => {
             return (
               <div
-                className="pt__intro_card rounded-lg p-5 m-6 max-w-md self-center lg:self-start prose prose-lg"
+                className="pt__intro_card flex-grow flex-shrink-0 shadow-lg  rounded-lg p-5 m-6 max-w-md self-center lg:self-start prose prose-lg"
                 style={{ height: 'auto' }}
                 key={card._id}
               >
