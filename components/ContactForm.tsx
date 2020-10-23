@@ -57,7 +57,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
         token: token,
       };
 
-      if (process.env.NODE_ENV != 'development') {
+      if (process.env.NODE_ENV == 'development') {
         setTimeout(() => {
           setForm({
             ...defaultForm,
