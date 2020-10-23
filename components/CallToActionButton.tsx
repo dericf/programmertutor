@@ -2,7 +2,6 @@ import React from 'react';
 
 const CallToActionButton = React.forwardRef(({ content }: any, ref: any) => {
   const handleClick = () => {
-    console.log('Button Pressed');
     if (ref !== null && ref.current != null) {
       ref.current.scrollIntoView({
         behavior: 'smooth',

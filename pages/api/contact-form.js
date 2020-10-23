@@ -19,11 +19,9 @@ export default async (req, res) => {
     if (validationResponse.success == true) {
       recaptchaValid = true;
 
-      console.log('Validation Success... Sending Email');
       await sendEmail(form);
     } else {
       recaptchaValid = false;
-      console.log('Validation Fail... Not sending Email');
     }
   } catch (e) {
     console.log('Validation Error', e);
@@ -49,7 +47,7 @@ const sendEmail = async (form) => {
     await sgMail.send(msg);
     console.log('Email sent!');
   } catch (err) {
-    console.log('Error sending email');
+    console.error('Error sending email');
     console.error(err.toString());
   }
 };
