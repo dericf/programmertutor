@@ -19,6 +19,8 @@ export const Hero = React.forwardRef(({ content }: HeroTypes, ref) => {
       </div>
       <div className="relative">
         <img
+          width="650"
+          height="1400"
           className="self-center w-full shadow-lg"
           src={urlFor(content.mainBackgroundImage)
             .height(650)

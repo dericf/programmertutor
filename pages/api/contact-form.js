@@ -19,11 +19,9 @@ export default async (req, res) => {
     if (validationResponse.success == true) {
       recaptchaValid = true;
 
-      console.log('Validation Success... Sending Email');
       await sendEmail(form);
     } else {
       recaptchaValid = false;
-      console.log('Validation Fail... Not sending Email');
     }
   } catch (e) {
     console.log('Validation Error', e);
@@ -42,14 +40,14 @@ const sendEmail = async (form) => {
     to: process.env.CONTACT_FORM_EMAIL_RECEIVER, // Change to your recipient
     from: process.env.CONTACT_FORM_EMAIL_SENDER, // Change to your verified sender
     subject: `Contact Form Submission - ${form.name}`,
-    html: `Name: ${form.name}<br/>Email: ${form.email}<br/>Course: ${form.course}<br/>Message: ${form.message}`,
+    html: `Name: ${form.name}<br/>Email: <a href="mailto:${form.email}">${form.email}</a><br/>Course: ${form.course}<br/>Message: ${form.message}`,
   };
   try {
     console.log('Sending email...');
     await sgMail.send(msg);
     console.log('Email sent!');
   } catch (err) {
-    console.log('Error sending email');
+    console.error('Error sending email');
     console.error(err.toString());
   }
 };

@@ -38,5 +38,6 @@ export const getStaticProps = async () => {
   const content = await sanity.fetch(contentQuery);
   return {
     props: { content }, // will be passed to the page component as props
+    revalidate: 15,
   };
 };
