@@ -58,7 +58,10 @@ export default function PrivacyPolicy({ content }) {
         <h2>Contact Form</h2>
         <p>
           Our contact form is protected by Google reCAPTCHA and their{' '}
-          <a href="https://www.google.com/intl/en/policies/terms/">
+          <a
+            rel="noreferrer"
+            href="https://www.google.com/intl/en/policies/terms/"
+          >
             Terms of Service
           </a>{' '}
           apply.

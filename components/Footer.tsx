@@ -50,6 +50,7 @@ export const Footer = () => {
 
         <span className="self-center cursor-pointer mb-8 whitespace-no-wrap ml-4">
           <a
+            rel="noreferrer"
             href="http://maps.google.com/?q=Edmonton%20Alberta%20Canada"
             target="_blank"
             className="text-sm sm:text-lg"
