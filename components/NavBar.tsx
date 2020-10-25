@@ -47,8 +47,8 @@ export const NavBar = () => {
 
         <a
           type="email"
-          href="mailto:contact@programmingtutor.com"
-          title="Email: contact@programmingtutor.com"
+          href="mailto:contact@programmertutor.com"
+          title="Email: contact@programmertutor.com"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

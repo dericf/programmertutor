@@ -29,7 +29,7 @@ export const Footer = () => {
           <a
             className="text-sm sm:text-lg"
             type="email"
-            href="mailto:contact@programmingtutor.com"
+            href="mailto:contact@programmertutor.com"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export const Footer = () => {
                 clipRule="evenodd"
               />
             </svg>
-            &nbsp; contact@programmingtutor.com
+            &nbsp; contact@programmertutor.com
           </a>
         </span>
 
