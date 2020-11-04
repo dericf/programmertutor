@@ -107,7 +107,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   return (
     <>
       <h2 className="text-2xl md:text-3xl text-center my-6 px-3">
-        Request a Free Consultation
+        Submit an Inquiry
       </h2>
 
       <form className="w-full max-w-lg mx-auto px-6" onSubmit={handleSubmit}>
@@ -212,12 +212,10 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           </label>
         </div>
 
-        <div className="flex flex-row justify-center">
-          <div
-            className="g-recaptcha self-center"
-            data-sitekey="6LeoztoZAAAAAEE1YeBCfI-WUPVTEvBU4HFzVQir"
-          ></div>
-        </div>
+        <div
+          className="g-recaptcha self-center flex flex-row justify-center"
+          data-sitekey="6LeoztoZAAAAAEE1YeBCfI-WUPVTEvBU4HFzVQir"
+        ></div>
 
         <div className="w-full flex flex-row justify-center border-gray-600 border-solid border-opacity-50 py-4 ">
           {form.isSubmitting == false && (
