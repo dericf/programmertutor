@@ -72,6 +72,18 @@ export const Footer = () => {
           </a>
         </span>
       </div>
+      <div className="flex justify-center">
+        <a
+          type="button"
+          target="_top"
+          href="https://square.site/book/L8KGKG1182GQ7/programmer-tutor"
+          rel="nofollow"
+          className="border-none text-center p-4 bg-blue-600 text-white text-lg rounded-sm
+       hover:bg-blue-800 shadow-lg hover:shadow-xl w-full sm:max-w-md  mx-auto relative right-auto left-auto bottom-0 mt-0"
+        >
+          Book an Appointment
+        </a>
+      </div>
       <div className="flex flex-row justify-around mt-6">
         <Link href="/privacy-policy" as="/privacy-policy">
           <a className="text-sm">Privacy Policy</a>
