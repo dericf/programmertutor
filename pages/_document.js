@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content="#000000" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta
             name="description"
             content="Programmer Tutoring Services. Computer Science tutor"
