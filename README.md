@@ -30,3 +30,6 @@ A single serverless function handles the submission of the contact form, and goo
 
 Deploying is simple - all you need to do is commit changes and push to master and a new build/deployment will automatically be triggered.
 
+## Latest Lighthouse Metrics
+
+[![Programmer-Tutor-Lighthouse-Metrics.png](https://i.postimg.cc/FKWdtN53/Programmer-Tutor-Lighthouse-Metrics.png)](https://postimg.cc/Y4FqYcSC)
