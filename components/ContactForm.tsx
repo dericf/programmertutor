@@ -1,7 +1,8 @@
-import { processEnv } from 'next/dist/lib/load-env-config';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Spinner from './Spinner';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { ContactFormResponse, ContactFormSubmitData } from 'types/types';
 
 type ContactForm = {
   name: string;
@@ -30,11 +31,11 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   var classNames = require('classnames');
 
   const defaultForm: ContactForm = {
-    name: '',
-    email: '',
+    name: 'test',
+    email: 'test@mail.com',
     course: '',
     message: '',
-    agreedToTerms: false,
+    agreedToTerms: true,
     isButtonDisabled: false,
     helperText: '',
     isError: false,
@@ -43,12 +44,17 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   };
   const [form, setForm] = useState(defaultForm);
 
+  const reRef = useRef<ReCAPTCHA>();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (form.name.length != 0 && form.agreedToTerms == true) {
       setForm({ ...form, isSubmitting: true });
-      let token = (grecaptcha as any).getResponse();
-      let data = {
+      // Generate Recaptcha token
+      let token = await reRef.current.executeAsync();
+      // Reset token for subsequent submission if attempt fails
+      reRef.current.reset();
+
+      let data: ContactFormSubmitData = {
         name: form.name,
         email: form.email,
         course: form.course,
@@ -57,44 +63,32 @@ const ContactForm = React.forwardRef((_, ref: any) => {
         token: token,
       };
 
-      if (process.env.NODE_ENV == 'development') {
-        setTimeout(() => {
-          setForm({
-            ...defaultForm,
-            isSubmitting: false,
-            isError: false,
-            isSuccess: true,
-            helperText: `Development Version Enabled.`,
-          });
-        }, 2);
-      } else {
-        let resp = await fetch('/api/contact-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-        const respData: any = await resp.json();
+      let resp = await fetch('/api/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const respData: ContactFormResponse = await resp.json();
 
-        if (respData.success) {
-          setForm({
-            ...defaultForm,
-            isError: false,
-            isSuccess: true,
-            isSubmitting: false,
-            helperText: `I received your information and I'll be in touch with you shortly via email. Thanks!`,
-          });
-        } else {
-          setForm({
-            ...form,
-            isError: true,
-            isSuccess: false,
-            isSubmitting: false,
-            helperText:
-              'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
-          });
-        }
+      if (respData.success) {
+        setForm({
+          ...defaultForm,
+          isError: false,
+          isSuccess: true,
+          isSubmitting: false,
+          helperText: `I received your information and I'll be in touch with you shortly via email. Thanks!`,
+        });
+      } else {
+        setForm({
+          ...form,
+          isError: true,
+          isSuccess: false,
+          isSubmitting: false,
+          helperText:
+            'There was a problem submitting the form. I apologize for that. Please Contact me via phone or email or try again later.',
+        });
       }
     }
   };
@@ -212,11 +206,6 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           </label>
         </div>
 
-        <div
-          className="g-recaptcha self-center flex flex-row justify-center"
-          data-sitekey="6LeoztoZAAAAAEE1YeBCfI-WUPVTEvBU4HFzVQir"
-        ></div>
-
         <div className="w-full flex flex-row justify-center border-gray-600 border-solid border-opacity-50 py-4 ">
           {form.isSubmitting == false && (
             <input
@@ -273,6 +262,11 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             <p>{form.helperText}</p>
           </div>
         )}
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          size="invisible"
+          ref={reRef}
+        />
       </form>
     </>
   );
