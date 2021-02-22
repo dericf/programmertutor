@@ -116,31 +116,30 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-name"
+              htmlFor="name"
             >
               Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               required
+              id="name"
               type="text"
               name="name"
               placeholder="Enter your name"
               value={form.name}
               onChange={handleChange}
             />
-            {/* <p className="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p> */}
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-last-name"
+              htmlFor="email"
             >
               Email
             </label>
             <input
+              id="email"
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="email"
               required
@@ -155,13 +154,14 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           <div className="w-full px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-class"
+              htmlFor="course"
             >
               Class
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"
+              id="course"
               name="course"
               value={form.course}
               onChange={handleChange}
@@ -173,11 +173,12 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           <div className="w-full px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-city"
+              htmlFor="message"
             >
               Message
             </label>
             <textarea
+              id="message"
               rows={6}
               name="message"
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -191,13 +192,14 @@ const ContactForm = React.forwardRef((_, ref: any) => {
         <div className="flex flex-wrap my-2 justify-center">
           <span className="text-center">
             <input
+              id="termsOfService"
               type="checkbox"
               checked={form.agreedToTerms}
               onChange={(e) => {
                 setForm({ ...form, agreedToTerms: e.target.checked });
               }}
             />{' '}
-            <label>
+            <label htmlFor="termsOfService">
               I have read and agree to the{' '}
               <a
                 className="underline cursor-pointer hover:text-blue-600"
