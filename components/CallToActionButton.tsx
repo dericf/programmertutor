@@ -6,7 +6,6 @@ const CallToActionButton = React.forwardRef(({ content }: any, ref: any) => {
       ref.current.scrollIntoView({
         behavior: 'smooth',
       });
-      ref.current.focus();
     }
   };
 
@@ -16,7 +15,7 @@ const CallToActionButton = React.forwardRef(({ content }: any, ref: any) => {
       <button
         onClick={handleClick}
         type="button"
-        className="border-none text-center p-4 bg-blue-600 text-white text-lg 
+        className="border-none text-center py-4 px-6 bg-blue-600 text-white text-lg 
        hover:bg-blue-800 shadow-lg hover:shadow-xl mx-auto w-full md:w-auto "
       >
         {content.callToActionButtonText}
