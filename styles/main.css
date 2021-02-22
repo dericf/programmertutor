@@ -1,10 +1,2 @@
 @import './tailwind.css';
 @import './spinner.css';
-
-.pt__main_container {
-  min-height: 80vh;
-}
-
-.pt__intro_card {
-  background-color: #ffffff;
-}
