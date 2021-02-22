@@ -31,11 +31,11 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   var classNames = require('classnames');
 
   const defaultForm: ContactForm = {
-    name: 'test',
-    email: 'test@mail.com',
+    name: '',
+    email: '',
     course: '',
     message: '',
-    agreedToTerms: true,
+    agreedToTerms: false,
     isButtonDisabled: false,
     helperText: '',
     isError: false,
@@ -101,7 +101,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   return (
     <>
       <h2 className="text-2xl md:text-3xl text-center my-6 px-3">
-        Submit an Inquiry
+        Request a Free Consultation
       </h2>
 
       <form className="w-full max-w-lg mx-auto px-6" onSubmit={handleSubmit}>
