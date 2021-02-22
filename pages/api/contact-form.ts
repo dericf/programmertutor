@@ -42,7 +42,6 @@ const validateToken = async (token: string): Promise<boolean> => {
       },
     });
     const validationData = await validationResponse.json();
-    console.log('validationData', validationData);
     return validationData.success;
   } catch (e) {
     console.log('Validation Error', e);
