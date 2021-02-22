@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
+import { urlFor } from 'lib/sanityImageBuilder';
 
-export const Footer = () => {
+export const Footer = ({ content }) => {
   return (
     <div className="pb-6 pt-0 mt-6  text-blue-700  w-100 bg-white rounded-lg z-10 relative">
       <div className="bg-white border-t shadow-md border-gray-300 py-6 mb-6 w-full">
@@ -11,7 +13,7 @@ export const Footer = () => {
       </div>
       <div className="flex flex-row justify-around flex-wrap items-center px-6">
         <span className=" self-center cursor-pointer whitespace-no-wrap mr-4 mb-8">
-          <a className="text-sm sm:text-lg" type="tel" href="tel:7802382982">
+          <a className="text-sm sm:text-lg border-none" type="tel" href="tel:7802382982">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -27,7 +29,7 @@ export const Footer = () => {
 
         <span className=" self-center cursor-pointer mb-8 whitespace-no-wrap ml-4">
           <a
-            className="text-sm sm:text-lg"
+            className="text-sm sm:text-lg border-none"
             type="email"
             href="mailto:contact@programmertutor.com"
           >
@@ -72,18 +74,13 @@ export const Footer = () => {
           </a>
         </span>
       </div>
-      <div className="flex justify-center">
-        <a
-          type="button"
-          target="_top"
-          href="https://square.site/book/L8KGKG1182GQ7/programmer-tutor"
-          rel="nofollow"
-          className="border-none text-center p-4 bg-blue-600 text-white text-lg rounded-sm
-       hover:bg-blue-800 shadow-lg hover:shadow-xl w-full sm:max-w-md  mx-auto relative right-auto left-auto bottom-0 mt-0"
-        >
-          Book an Appointment
-        </a>
-      </div>
+      {/* <div className="flex justify-center w-screen h-24">
+        <Image
+          src={urlFor(content.mainBackgroundImage).height(200).width(600).url()}
+          alt="Programmer Tutor Image"
+          layout="fill"
+        />
+      </div> */}
       <div className="flex flex-row justify-around mt-6">
         <Link href="/privacy-policy" as="/privacy-policy">
           <a className="text-sm">Privacy Policy</a>
