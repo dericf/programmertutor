@@ -100,6 +100,12 @@ export default createSchema({
           title: 'Image',
           type: 'image',
         },
+        {
+          name: 'displayOrder',
+          title: 'Display Order',
+          type: 'number',
+          validation: (Rule) => Rule.min(0).integer().positive(),
+        },
       ],
     },
     {
@@ -120,17 +126,10 @@ export default createSchema({
           of: [{ type: 'block' }],
         },
         {
-          // Main Image
-          name: 'mainImage',
-          title: 'Main Image',
-          type: 'image',
-        },
-        {
-          // Other Images
-          name: 'otherImages',
-          title: 'Other Images',
-          type: 'array',
-          of: [{ type: 'image' }],
+          name: 'displayOrder',
+          title: 'Display Order',
+          type: 'number',
+          validation: (Rule) => Rule.min(0).integer().positive(),
         },
       ],
     },
