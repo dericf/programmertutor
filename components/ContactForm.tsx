@@ -100,7 +100,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
   };
   return (
     <>
-      <h2 className="text-2xl md:text-3xl text-center my-6 px-3">
+      <h2 className="text-2xl md:text-3xl text-center my-6 px-3" ref={ref}>
         Request a Free Consultation
       </h2>
 
@@ -114,8 +114,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               Name
             </label>
             <input
-              ref={ref}
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               required
               type="text"
               name="name"
@@ -135,7 +134,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               Email
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="email"
               required
               type="email"
@@ -154,12 +153,12 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               Class
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"
               name="course"
               value={form.course}
               onChange={handleChange}
-              placeholder="Enter Class Name or Topic"
+              placeholder="Enter class name or topic"
             />
           </div>
         </div>
@@ -174,7 +173,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             <textarea
               rows={6}
               name="message"
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200  py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               placeholder="Additional Message (optional)"
               value={form.message}
               onChange={handleChange}
@@ -192,7 +191,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
               }}
             />{' '}
             I have read and agree to the{' '}
-            <Link href="/privacy-policy" as="/privacy-policy">
+            <Link href="/privacy-policy" as="/privacy-policy" >
               <a className="underline cursor-pointer hover:text-blue-600">
                 Privacy Policy
               </a>
@@ -211,9 +210,9 @@ const ContactForm = React.forwardRef((_, ref: any) => {
             <input
               type="submit"
               value="Submit"
-              disabled={form.name.length == 0 && form.agreedToTerms == false}
+              disabled={form.name.length === 0 && form.agreedToTerms == false && form.email.length === 0}
               className={`font-bold text-white px-6 py-2 rounded-sm w-full mr-6 ${
-                form.name.length != 0 && form.agreedToTerms
+                form.name.length !== 0 && form.agreedToTerms && form.email.length !== 0
                   ? 'cursor-pointer bg-blue-500 hover:bg-blue-dark focus:bg-blue-700 focus:border-white'
                   : 'cursor-not-allowed bg-blue-200'
               }`}
