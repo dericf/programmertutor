@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import Spinner from './Spinner';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { ContactFormResponse, ContactFormSubmitData } from 'types/types';
+import { TermsAndConditions } from './TermsAndConditions';
+import CloseOutlined from '@material-ui/icons/CloseOutlined';
+import { FormInfoBox } from './FormInfoBox';
+import { PrivacyPolicy } from './PrivacyPolicy';
 
 type ContactForm = {
   name: string;
@@ -27,8 +31,11 @@ const FormErrors: ContactFormErrors = {
   email: 'Please enter a valid email',
 };
 
+type ShowTermsInfo = 'toc' | 'privacy-policy' | null;
+
 const ContactForm = React.forwardRef((_, ref: any) => {
   var classNames = require('classnames');
+  const [showTermsInfo, setShowTermsInfo] = useState<ShowTermsInfo>(null);
 
   const defaultForm: ContactForm = {
     name: '',
@@ -104,7 +111,7 @@ const ContactForm = React.forwardRef((_, ref: any) => {
         Request a Free Consultation
       </h2>
 
-      <form className="w-full max-w-lg mx-auto px-6" onSubmit={handleSubmit}>
+      <form className="w-full max-w-xl mx-auto px-6" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6 ">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -181,8 +188,8 @@ const ContactForm = React.forwardRef((_, ref: any) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap my-2">
-          <label>
+        <div className="flex flex-wrap my-2 justify-center">
+          <span className="text-center">
             <input
               type="checkbox"
               checked={form.agreedToTerms}
@@ -190,29 +197,44 @@ const ContactForm = React.forwardRef((_, ref: any) => {
                 setForm({ ...form, agreedToTerms: e.target.checked });
               }}
             />{' '}
-            I have read and agree to the{' '}
-            <Link href="/privacy-policy" as="/privacy-policy" >
-              <a className="underline cursor-pointer hover:text-blue-600">
+            <label>
+              I have read and agree to the{' '}
+              <a
+                className="underline cursor-pointer hover:text-blue-600"
+                onClick={() => setShowTermsInfo('privacy-policy')}
+              >
                 Privacy Policy
               </a>
-            </Link>
-            &nbsp;and the&nbsp;
-            <Link href="/terms-and-conditions" as="/terms-and-conditions">
-              <a className="underline cursor-pointer hover:text-blue-600">
+              &nbsp;and the&nbsp;
+              <a
+                className="underline cursor-pointer hover:text-blue-600"
+                onClick={() => setShowTermsInfo('toc')}
+              >
                 Terms and Conditions
               </a>
-            </Link>
-          </label>
+            </label>
+          </span>
         </div>
-
+        {showTermsInfo && (
+          <FormInfoBox onClose={() => setShowTermsInfo(null)}>
+            {showTermsInfo === 'toc' && <TermsAndConditions />}
+            {showTermsInfo === 'privacy-policy' && <PrivacyPolicy />}
+          </FormInfoBox>
+        )}
         <div className="w-full flex flex-row justify-center border-gray-600 border-solid border-opacity-50 py-4 ">
           {form.isSubmitting == false && (
             <input
               type="submit"
               value="Submit"
-              disabled={form.name.length === 0 && form.agreedToTerms == false && form.email.length === 0}
+              disabled={
+                form.name.length === 0 &&
+                form.agreedToTerms == false &&
+                form.email.length === 0
+              }
               className={`font-bold text-white px-6 py-2 rounded-sm w-full mr-6 ${
-                form.name.length !== 0 && form.agreedToTerms && form.email.length !== 0
+                form.name.length !== 0 &&
+                form.agreedToTerms &&
+                form.email.length !== 0
                   ? 'cursor-pointer bg-blue-500 hover:bg-blue-dark focus:bg-blue-700 focus:border-white'
                   : 'cursor-not-allowed bg-blue-200'
               }`}
