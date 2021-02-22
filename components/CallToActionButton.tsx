@@ -13,27 +13,14 @@ const CallToActionButton = React.forwardRef(({ content }: any, ref: any) => {
   return (
     <>
       {/* Mobile Button */}
-      <a
+      <button
+        onClick={handleClick}
         type="button"
-        target="_top"
-        href="https://square.site/book/L8KGKG1182GQ7/programmer-tutor"
-        rel="nofollow"
         className="border-none text-center p-4 bg-blue-600 text-white text-lg 
-       hover:bg-blue-800 shadow-lg hover:shadow-xl w-full  mx-auto relative right-auto left-auto bottom-0 mt-0 sm:hidden"
+       hover:bg-blue-800 shadow-lg hover:shadow-xl mx-auto w-full md:w-auto "
       >
         {content.callToActionButtonText}
-      </a>
-      {/* Larger than Mobile Button */}
-      <a
-        type="button"
-        target="_top"
-        href="https://square.site/book/L8KGKG1182GQ7/programmer-tutor"
-        rel="nofollow"
-        className="border-none text-center rounded-sm p-4 bg-blue-600 text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
-        hover:shadow-sm hidden sm:inline absolute right-0 top-0 mt-10 mr-10 max-w-sm md:max-w-md"
-      >
-        {content.callToActionButtonText}
-      </a>
+      </button>
     </>
   );
 });
