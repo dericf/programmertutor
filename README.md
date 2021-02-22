@@ -1,30 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Programmer Tutor Website
 
-## Getting Started
+[www.programmertutor.com](https://programmertutor.com)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Built with NextJS on Vercel, Sanity Headless CMS, TailwindCSS, and SendGrid, programmertutor.com is a simple website where I display information about my tutoring services, some insight into what I can help students with, and a contact form where people can get ahold of me.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A single serverless function handles the submission of the contact form, and google recaptcha v2 handles human verification to prevent spam.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Developing locally
 
-## Learn More
+1. Clone the repository
+2. run `npm install` in the main directory
+3. run `npm install` in the `/sanity` directory
+4. define a `.env.local` file and add the following environment variables:
+	```bash
+	SENDGRID_API_KEY="<SENDGRID_API_KEY>"
+	NEXT_PUBLIC_RECAPTCHA_SITE_KEY="<RECAPTCHA_SITE_KEY>"
+	RECAPTCHA_SERVER_KEY="<RECAPTCHA_SERVER_KEY>"
+	CONTACT_FORM_EMAIL_RECEIVER="deric@programmertutor.com"
+	CONTACT_FORM_EMAIL_SENDER="deric@programmertutor.com"
+	NODE_ENV="development"
+	```
+5. run next dev server with `npm run dev`
+6. run the sanity server with `npm run start` from inside the `/sanity` directory
+7. if major changes are being made, checkout the `dev` branch and make sure it is up to date with `master` by running `git checkout master && git rebase master`
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy Changes to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Deploying is simple - all you need to do is commit changes and push to master and a new build/deployment will automatically be triggered.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
