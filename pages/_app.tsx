@@ -8,11 +8,7 @@ function MyApp({ Component, pageProps }: AppProps): any {
   return (
     <>
       <Head>
-        <script
-          src="https://www.google.com/recaptcha/api.js"
-          async
-          defer
-        ></script>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <Component {...pageProps} />
